@@ -11,8 +11,9 @@ class SGT_template {
 	constructor(elementConfig) {
 		this.elementConfig = elementConfig; /* console.log elementConfig to note what data you have access to */
 		this.data = {};
-
-
+		console.log(elementConfig);
+		this.handleAdd = this.handleAdd.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
 	}
 
 	/* addEventHandlers - add event handlers to pre-made dom elements
@@ -24,8 +25,8 @@ class SGT_template {
 	ESTIMATED TIME: 15 minutes
 	*/
 	addEventHandlers() {
-
-
+		this.elementConfig.addButton.on('click', this.handleAdd);
+		this.elementConfig.cancelButton.on('click', this.handleCancel);
 	}
 
 	/* clearInputs - Clear the values in the three form inputs
@@ -34,7 +35,9 @@ class SGT_template {
 	ESTIMATED TIME: 15 minutes
 	*/
 	clearInputs() {
-
+		this.elementConfig.courseInput.val('');
+		this.elementConfig.gradeInput.val('');
+		this.elementConfig.nameInput.val('');
 	}
 
 	/* handleCancel - function to handle the cancel button press (should clear out all values in the inputs)
@@ -43,7 +46,7 @@ class SGT_template {
 	ESTIMATED TIME: 15 minutes
 	*/
 	handleCancel() {
-
+		this.clearInputs();
 	}
 
 	/* createStudent - take in data for a student, make a new Student object, and add it to this.data object
@@ -68,7 +71,9 @@ class SGT_template {
 	ESTIMATED TIME: 1.5 hours
 	*/
 	createStudent() {
-
+		if( //no ID is present, must pick the next available ID in this.data )
+		 for (Object.keys(the.data))
+		this.data.push()
 	}
 
 	/* doesStudentExist -
