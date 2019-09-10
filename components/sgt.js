@@ -27,6 +27,7 @@ class SGT_template {
 	addEventHandlers() {
 		this.elementConfig.addButton.click(this.handleAdd);
 		this.elementConfig.cancelButton.click(this.handleCancel);
+		// this.elementConfig.retrieveButton.click(this.handleRetrieve);
 	}
 
 	/* clearInputs - Clear the values in the three form inputs
@@ -164,7 +165,6 @@ class SGT_template {
 			this.elementConfig.displayArea.append(this.data[student].render());
 		}
 		this.displayAverage();
-
 	}
 
 	/* displayAverage - get the grade average and display it
@@ -224,5 +224,39 @@ class SGT_template {
 		ESTIMATED TIME: no needed for first versions: 30 minutes
 	*/
 	updateStudent() {
+	}
+
+	handleRetrieve(){
+		//handleretrieveStudentDataFromServer
+		//will send the data to the server - the API key you were given
+		//return from the server: an object literal containing boolean (whether it was successful) and student data
+		var studentDataRetrieved = {
+			// success:
+			studentData: {},
+			successful: 'true',
+		}
+
+		function studentDataRetrieved(){
+			console.log(studentDataRetrieved)
+			return studentDataRetrieved;
+		}
+
+		$.ajax(studentDataRetrieved);
+
+		var ajaxConfigObject = $.ajax({
+				url: 'http://s-apis.learningfuze.com/sgt/get',
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					api_key: 'api key'
+				},
+			}).done(function (data, status, jqXHR){
+				//$('#container').html(data);
+				alert('Promise success callback');
+			}).fail(function (jqXHR, status, err){
+				alert('Promise error callback');
+			}).always(function (){
+				alert('Promise comepletion callback');
+			});
 	}
 }
