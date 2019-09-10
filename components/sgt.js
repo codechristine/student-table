@@ -14,6 +14,7 @@ class SGT_template {
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		this.deleteStudent = this.deleteStudent.bind(this);
+		// this.createStudent = this.createStudent.bind(this);
 		this.retrieveStudentData = this.retrieveStudentData.bind(this);
 	}
 
@@ -229,21 +230,31 @@ class SGT_template {
 
 	retrieveStudentData(){
 
-		var ajaxConfigObject = $.ajax({
-				url: 'http://s-apis.learningfuze.com/sgt/get',
-				type: 'POST',
-				dataType: 'json',
-				data: {
-					api_key: 'Vjx3RodsrfTG'
-				},
-			}).done(function (data, status, jqXHR){
-				$('#retrieveButton').html(data);
-				alert('Promise success callback');
-			}).fail(function (jqXHR, status, err){
-				alert('Promise error callback');
-			}).always(function (){
-				alert('Promise comepletion callback');
-			});
-			console.log(ajaxConfigObject);
+		var ajaxConfigObject = {
+			url: 'http://s-apis.learningfuze.com/sgt/get',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				api_key: 'Vjx3RodsrfTG'
+			},
+			success: function (data, status){
+				alert('Success callback');
+				console.log(data, status);
+					var dataArray = data.data;
+					console.log(dataArray);
+						for (var i = 0; i < dataArray.length; i++){
+							var studentDataResult = dataArray[i];
+							console.log(studentDataResult);
+							var newStudentFromRecievedData = this.createStudent(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
+							console.log(newStudentFromRecievedData);
+						}
+				this.displayAllStudents();
+			}.bind(this),
+			error: function (jqXHR, status, err){
+				console.log(status, err);
+			}
+		}
+		$.ajax(ajaxConfigObject);
+		console.log(ajaxConfigObject);
 	}
 }
