@@ -45,12 +45,6 @@ class Student {
 	*/
 	getData() {
 		return this.data;
-		// return this.data ={
-		// 	id: this.id,
-		// 	name: this.name,
-		// 	course: this.course,
-		// 	grade: this.grade
-		// };
 	}
 
 	/* render - create and return a table row (TR) with 4 table cells (TD) in them:

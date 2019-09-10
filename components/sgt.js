@@ -14,6 +14,7 @@ class SGT_template {
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		this.deleteStudent = this.deleteStudent.bind(this);
+		this.retrieveStudentData = this.retrieveStudentData.bind(this);
 	}
 
 	/* addEventHandlers - add event handlers to pre-made dom elements
@@ -27,7 +28,7 @@ class SGT_template {
 	addEventHandlers() {
 		this.elementConfig.addButton.click(this.handleAdd);
 		this.elementConfig.cancelButton.click(this.handleCancel);
-		// this.elementConfig.retrieveButton.click(this.handleRetrieve);
+		$('#retrieveButton').click(this.retrieveStudentData);
 	}
 
 	/* clearInputs - Clear the values in the three form inputs
@@ -72,7 +73,7 @@ class SGT_template {
 	ESTIMATED TIME: 1.5 hours
 	*/
 	createStudent(name, course, grade, id) {
-		var studentID = Object.keys(this.data)
+		var studentID = Object.keys(this.data);
 
 		if (this.doesStudentExist(id)) {
 			return false;
@@ -103,7 +104,7 @@ class SGT_template {
 		if (this.data.hasOwnProperty(id)) {
 			return true;
 		}
-		return false;
+			return false;
 	}
 
 	/* handleAdd - function to handle the add button click
@@ -226,37 +227,23 @@ class SGT_template {
 	updateStudent() {
 	}
 
-	handleRetrieve(){
-		//handleretrieveStudentDataFromServer
-		//will send the data to the server - the API key you were given
-		//return from the server: an object literal containing boolean (whether it was successful) and student data
-		var studentDataRetrieved = {
-			// success:
-			studentData: {},
-			successful: 'true',
-		}
-
-		function studentDataRetrieved(){
-			console.log(studentDataRetrieved)
-			return studentDataRetrieved;
-		}
-
-		$.ajax(studentDataRetrieved);
+	retrieveStudentData(){
 
 		var ajaxConfigObject = $.ajax({
 				url: 'http://s-apis.learningfuze.com/sgt/get',
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					api_key: 'api key'
+					api_key: 'Vjx3RodsrfTG'
 				},
 			}).done(function (data, status, jqXHR){
-				//$('#container').html(data);
+				$('#retrieveButton').html(data);
 				alert('Promise success callback');
 			}).fail(function (jqXHR, status, err){
 				alert('Promise error callback');
 			}).always(function (){
 				alert('Promise comepletion callback');
 			});
+			console.log(ajaxConfigObject);
 	}
 }
