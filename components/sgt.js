@@ -16,6 +16,7 @@ class SGT_template {
 		this.deleteStudent = this.deleteStudent.bind(this);
 		this.retrieveStudentData = this.retrieveStudentData.bind(this);
 		this.addNewStudentToServer = this.addNewStudentToServer.bind(this);
+		this.deleteStudentFromServer = this.deleteStudentFromServer.bind(this);
 	}
 
 	/* addEventHandlers - add event handlers to pre-made dom elements
@@ -204,12 +205,13 @@ class SGT_template {
 		ESTIMATED TIME: 30 minutes
 	*/
 	deleteStudent(id) {
-		if (id in this.data) {
+		if (id in this.deleteStudentFromServer) {
 			delete this.data[id];
 			return true;
 		} else {
 			return false;
 		}
+		// this.deleteStudentFromServer(id);
 	}
 	/* updateStudent -
 		*** not used for now.  Will be used later ***
@@ -269,7 +271,24 @@ class SGT_template {
 			error: function (status, err) {
 				alert('Fail callback');
 			},
-			}
+		}
+		$.ajax(ajaxConfigObject);
+	}
+
+	deleteStudentFromServer(studentID){
+		var ajaxConfigObject = {
+			url: 'http://s-apis.learningfuze.com/sgt/delete',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				api_key: 'Vjx3RodsrfTG',
+				student_id: studentID,
+			},
+			success: this.retrieveStudentData,
+			error: function (status, err){
+				alert('Fail callback');
+			},
+		}
 		$.ajax(ajaxConfigObject);
 	}
 }
