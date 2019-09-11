@@ -14,6 +14,7 @@ class SGT_template {
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		this.deleteStudent = this.deleteStudent.bind(this);
+
 		this.retrieveStudentData = this.retrieveStudentData.bind(this);
 		this.addNewStudentToServer = this.addNewStudentToServer.bind(this);
 	}
@@ -106,6 +107,8 @@ class SGT_template {
 			return true;
 		}
 		return false;
+
+			return false;
 	}
 
 	/* handleAdd - function to handle the add button click
@@ -119,7 +122,6 @@ class SGT_template {
 	ESTIMATED TIME: 1 hour
 	*/
 	handleAdd() {
-
 		var nameValue = this.elementConfig.nameInput.val();
 		var gradeValue = this.elementConfig.gradeInput.val();
 		var courseValue = this.elementConfig.courseInput.val();

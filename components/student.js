@@ -45,12 +45,6 @@ class Student {
 	*/
 	getData() {
 		return this.data;
-		// return this.data ={
-		// 	id: this.id,
-		// 	name: this.name,
-		// 	course: this.course,
-		// 	grade: this.grade
-		// };
 	}
 
 	/* render - create and return a table row (TR) with 4 table cells (TD) in them:
@@ -72,16 +66,17 @@ class Student {
 	*/
 	render() {
 		this.domElements.row = $('<tr>')
-		//create the elements to append to tr
-		this.domElements.name = $('<td>').addClass('col-xs-4.col-md-4').text(this.data.name);
+
+//create the elements to append to tr
+		this.domElements.name	=	$('<td>').addClass('col-xs-4.col-md-4').text(this.data.name);
 		this.domElements.course = $('<td>').addClass('col-xs-4.col-md-4').text(this.data.course);
 		this.domElements.grade = $('<td>').addClass('col-xs-4.col-md-4').text(this.data.grade);
 		this.domElements.operations = $('<td>').addClass('col-xs-4.col-md-4')
-		//create another element button with an event handler to handle clicks and use a callback function. Then append the button to the operations.
+//create another element button with an event handler to handle clicks and use a callback function. Then append the button to the operations.
 		this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete');
 		this.domElements.operations.append(this.domElements.deleteButton);
 
-		//append each td into the tr
+//append each td into the tr
 		this.domElements.row.append(this.domElements.name);
 		this.domElements.row.append(this.domElements.course);
 		this.domElements.row.append(this.domElements.grade);
@@ -119,8 +114,9 @@ class Student {
 	ESTIMATED TIME: 1.5 hours
 	*/
 	update(updateField, updateValue) {
-		if (updateField === 'id' || updateField === 'name' || updateField === 'course' || updateField === 'grade') {
-			if (typeof this.data[updateField] === 'number') {
+
+		if(updateField === 'id' || updateField === 'name' || updateField === 'course' || updateField === 'grade'){
+			if(typeof this.data[updateField] === 'number'){
 				this.data[updateField] = parseInt(updateValue);
 			} else {
 				this.data[updateField] = updateValue;
