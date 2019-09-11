@@ -66,6 +66,7 @@ class Student {
 	*/
 	render() {
 		this.domElements.row = $('<tr>')
+
 //create the elements to append to tr
 		this.domElements.name	=	$('<td>').addClass('col-xs-4.col-md-4').text(this.data.name);
 		this.domElements.course = $('<td>').addClass('col-xs-4.col-md-4').text(this.data.course);
@@ -113,6 +114,7 @@ class Student {
 	ESTIMATED TIME: 1.5 hours
 	*/
 	update(updateField, updateValue) {
+
 		if(updateField === 'id' || updateField === 'name' || updateField === 'course' || updateField === 'grade'){
 			if(typeof this.data[updateField] === 'number'){
 				this.data[updateField] = parseInt(updateValue);
