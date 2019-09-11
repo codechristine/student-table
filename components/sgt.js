@@ -15,6 +15,7 @@ class SGT_template {
 		this.handleCancel = this.handleCancel.bind(this);
 		this.deleteStudent = this.deleteStudent.bind(this);
 		this.retrieveStudentData = this.retrieveStudentData.bind(this);
+		this.addNewStudentToServer = this.addNewStudentToServer.bind(this);
 	}
 
 	/* addEventHandlers - add event handlers to pre-made dom elements
@@ -118,11 +119,13 @@ class SGT_template {
 	ESTIMATED TIME: 1 hour
 	*/
 	handleAdd() {
+
 		var nameValue = this.elementConfig.nameInput.val();
 		var gradeValue = this.elementConfig.gradeInput.val();
 		var courseValue = this.elementConfig.courseInput.val();
 
-		this.createStudent(nameValue, courseValue, gradeValue);
+		// this.createStudent(nameValue, courseValue, gradeValue);
+		this.addNewStudentToServer();
 		this.clearInputs();
 	}
 
@@ -228,7 +231,6 @@ class SGT_template {
 	}
 
 	retrieveStudentData() {
-
 		var ajaxConfigObject = {
 			url: 'http://s-apis.learningfuze.com/sgt/get',
 			type: 'POST',
@@ -245,10 +247,29 @@ class SGT_template {
 				}
 				this.displayAllStudents();
 			}.bind(this),
-			error: function (jqXHR, status, err) {
+			error: function (status, err) {
 				alert('Fail callback');
 			}
 		}
+		$.ajax(ajaxConfigObject);
+	}
+
+	addNewStudentToServer(studentName, studentCourse, studentGrade){
+		var ajaxConfigObject = {
+			url: 'http://s-apis.learningfuze.com/sgt/create',
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				api_key: 'Vjx3RodsrfTG',
+				name: studentName,
+				course: studentCourse,
+				grade: studentGrade,
+			},
+			success: this.retrieveStudentData,
+			error: function (status, err) {
+				alert('Fail callback');
+			},
+			}
 		$.ajax(ajaxConfigObject);
 	}
 }
