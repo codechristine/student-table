@@ -126,7 +126,7 @@ class SGT_template {
 		var courseValue = this.elementConfig.courseInput.val();
 
 		// this.createStudent(nameValue, courseValue, gradeValue);
-		this.addNewStudentToServer();
+		this.addNewStudentToServer(nameValue, courseValue, gradeValue);
 		this.clearInputs();
 	}
 
@@ -235,6 +235,7 @@ class SGT_template {
 	retrieveStudentData() {
 		var ajaxConfigObject = {
 			url: 'http://s-apis.learningfuze.com/sgt/get',
+			// url: 'api/getgrades.php',
 			type: 'POST',
 			dataType: 'json',
 			data: {
