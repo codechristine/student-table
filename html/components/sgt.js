@@ -234,8 +234,10 @@ class SGT_template {
 
 	retrieveStudentData() {
 		var ajaxConfigObject = {
-			url: 'http://s-apis.learningfuze.com/sgt/get',
-			type: 'POST',
+			// url: 'http://s-apis.learningfuze.com/sgt/get',
+			// type: 'POST',
+			url: 'getstudents',
+			type: 'GET',
 			dataType: 'json',
 			data: {
 				api_key: 'Vjx3RodsrfTG'
