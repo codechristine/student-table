@@ -1,0 +1,23 @@
+{
+  "name": "sgt",
+  "version": "3.0.0",
+  "description": "student grade table full with node server",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codechristine/SGT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codechristine/SGT/issues"
+  },
+  "homepage": "https://github.com/codechristine/SGT#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
