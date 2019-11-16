@@ -4,13 +4,11 @@ A full stack JavaScript application for teachers who want to manage course recor
 
 ## Technologies Used
 
-- React.js
 - Webpack 4
-- Bootstrap 4
+- Bootstrap 3
 - Node.js
 - HTML5
 - CSS3
-- AWS EC2
 
 ## Live Demo
 

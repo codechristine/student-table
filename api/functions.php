@@ -11,6 +11,4 @@ if(!function_exists('handleErrors')){
   }
 }
 
-
-
 ?>

@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codechristine/SGT.git"
+    "url": "git+https://github.com/codechristine/student-table.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/codechristine/SGT/issues"
+    "url": "https://github.com/codechristine/student-table/issues"
   },
-  "homepage": "https://github.com/codechristine/SGT#readme",
+  "homepage": "https://github.com/codechristine/student-table#readme",
   "dependencies": {
     "express": "^4.17.1"
   }
