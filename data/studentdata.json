@@ -1,0 +1,17 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "name": "Test Student",
+      "grade": 80,
+      "course": "Test Course"
+    },
+    {
+      "id": 2,
+      "name": "Another Student",
+      "grade": 80,
+      "course": "SomeClass"
+    }
+  ]
+}
