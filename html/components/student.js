@@ -30,7 +30,7 @@ class Student {
 		this.domElements.grade = $('<td>').addClass('col-xs-4.col-md-4').text(this.data.grade);
 		this.domElements.operations = $('<td>').addClass('col-xs-4.col-md-4');
 
-		this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('btn btn-danger');
+		this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('btn btn-danger m-2');
 		this.domElements.operations.append(this.domElements.deleteButton);
 		this.domElements.row.append(this.domElements.name);
 		this.domElements.row.append(this.domElements.course);
