@@ -1,6 +1,6 @@
 class SGT_template {
 	constructor(elementConfig) {
-		this.elementConfig = elementConfig; /* console.log elementConfig to note what data you have access to */
+		this.elementConfig = elementConfig;
 		this.data = {};
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
@@ -31,7 +31,7 @@ class SGT_template {
 		if (id === undefined) {
 			for (var i = 1; i <= studentID.length + 1; i++) {
 				if (!this.doesStudentExist(i)) {
-					//create a student
+
 					this.data[i] = new Student(i, name, course, grade, this.deleteStudent);
 					return true;
 				}
@@ -92,10 +92,10 @@ class SGT_template {
 		var ajaxConfigObject = {
 			// url: 'api/getgrades.php',
 			// type: 'POST',
-			url: 'http://s-apis.learningfuze.com/sgt/get',
-			type: 'POST',
-			// url: 'getstudents',
-			// type: 'GET',
+			// url: 'http://s-apis.learningfuze.com/sgt/get',
+			// type: 'POST',
+			url: 'getstudents',
+			type: 'GET',
 			dataType: 'json',
 			data: {
 				api_key: 'Vjx3RodsrfTG'
@@ -118,7 +118,8 @@ class SGT_template {
 
 	addNewStudentToServer(studentName, studentCourse, studentGrade){
 		var ajaxConfigObject = {
-			url: 'http://s-apis.learningfuze.com/sgt/create',
+			// url: 'http://s-apis.learningfuze.com/sgt/create',
+			url: 'addstudents',
 			type: 'POST',
 			dataType: 'json',
 			data: {
