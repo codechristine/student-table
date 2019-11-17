@@ -3,15 +3,28 @@
   "data": [
     {
       "id": 1,
-      "name": "Test Student",
-      "grade": 80,
-      "course": "Test Course"
+      "name": "John Doe",
+      "grade": 90,
+      "course": "art"
     },
     {
       "id": 2,
-      "name": "Another Student",
+      "name": "Lucy Lu",
       "grade": 80,
-      "course": "SomeClass"
+      "course": "computer science"
+    },
+    {
+      "id": 3,
+      "name": "Benjamin Button",
+      "grade": 75,
+      "course": "history"
+    },
+    {
+      "id": 4,
+      "name": "Marley Mo",
+      "grade": 60,
+      "course": "geometry"
     }
   ]
+
 }
