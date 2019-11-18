@@ -105,6 +105,14 @@ body>.minimizeButton {
 	color: orange;
 }
 
+/* .lightModeActive {
+	background-color: white;
+}
+
+.darkModeActive {
+	background: black;
+} */
+
 .switch {
   position: relative;
   display: inline-block;
@@ -146,29 +154,12 @@ input:checked + .slider {
 	background-color: #2196F3;
 }
 
-@media (prefers-color-scheme: dark) {
-	input:checked + .slider body {
-		background-color: black;
-		color: white;
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --color-scheme-background: black;
-        --color-scheme-text-color: white;
-    }
-}
-
 input:focus + .slider {
 	box-shadow: 0 0 1px #2196F3;
 }
 
-@media (prefers-color-scheme: dark) {
-	input:focus + .slider body {
-		background-color: black;
-		color: white;
-	}
+input:focus + .slider + body {
+	background-color: black;
 }
 
 input:checked + .slider:before {

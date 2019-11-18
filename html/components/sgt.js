@@ -2,17 +2,20 @@ class SGT_template {
 	constructor(elementConfig) {
 		this.elementConfig = elementConfig;
 		this.data = {};
+		this.darkDomElement = null;
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		this.deleteStudent = this.deleteStudent.bind(this);
 		this.retrieveStudentData = this.retrieveStudentData.bind(this);
 		this.addNewStudentToServer = this.addNewStudentToServer.bind(this);
 		this.deleteStudentFromServer = this.deleteStudentFromServer.bind(this);
+		this.toggleDarkMode = this.toggleDarkMode.bind(this);
 	}
 	addEventHandlers() {
 		this.elementConfig.addButton.click(this.handleAdd);
 		this.elementConfig.cancelButton.click(this.handleCancel);
 		$('#retrieveButton').click(this.retrieveStudentData);
+		$('.slider').click(this.toggleDarkMode);
 	}
 	clearInputs() {
 		this.elementConfig.courseInput.val('');
@@ -116,7 +119,7 @@ class SGT_template {
 		$.ajax(ajaxConfigObject);
 	}
 
-	addNewStudentToServer(studentName, studentCourse, studentGrade){
+	addNewStudentToServer(studentName, studentCourse, studentGrade) {
 		var ajaxConfigObject = {
 			// url: 'http://s-apis.learningfuze.com/sgt/create',
 			url: 'addstudents',
@@ -136,20 +139,27 @@ class SGT_template {
 		$.ajax(ajaxConfigObject);
 	}
 
-	deleteStudentFromServer(studentID){
+	deleteStudentFromServer(studentID) {
 		var ajaxConfigObject = {
-			url: 'http://s-apis.learningfuze.com/sgt/delete',
-			type: 'POST',
+			// url: 'http://s-apis.learningfuze.com/sgt/delete',
+			url: 'deletestudents',
+			type: 'DELETE',
 			dataType: 'json',
 			data: {
 				api_key: 'Vjx3RodsrfTG',
 				student_id: studentID,
 			},
 			success: this.retrieveStudentData,
-			error: function (status, err){
+			error: function (status, err) {
 				alert('Fail callback');
 			},
 		}
 		$.ajax(ajaxConfigObject);
+	}
+
+	toggleDarkMode() {
+		this.darkDomElement = $('body').addClass('darkModeActive').css({ 'background-color': 'black'});
+
+		this.elementConfig.append(this.darkDomElement);
 	}
 }
