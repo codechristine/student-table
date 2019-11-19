@@ -105,13 +105,14 @@ body>.minimizeButton {
 	color: orange;
 }
 
-/* .lightModeActive {
+.lightModeActive {
 	background-color: white;
 }
 
 .darkModeActive {
-	background: black;
-} */
+	background-color: black;
+	color: white;
+}
 
 .switch {
   position: relative;

@@ -2,7 +2,7 @@ class SGT_template {
 	constructor(elementConfig) {
 		this.elementConfig = elementConfig;
 		this.data = {};
-		this.darkDomElement = null;
+		this.darkModeActive = false;
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		this.deleteStudent = this.deleteStudent.bind(this);
@@ -158,8 +158,14 @@ class SGT_template {
 	}
 
 	toggleDarkMode() {
-		this.darkDomElement = $('body').addClass('darkModeActive').css({ 'background-color': 'black'});
 
-		this.elementConfig.append(this.darkDomElement);
+		this.darkModeActive = !this.darkModeActive;
+		$('body').removeClass()
+
+		if(this.darkModeActive){
+			$('body').addClass('darkModeActive');
+		} else {
+			$('body').addClass('lightModeActive');
+		}
 	}
 }
