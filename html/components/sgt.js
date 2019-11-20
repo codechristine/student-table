@@ -120,12 +120,12 @@ class SGT_template {
 			url: '/api/add-student/',
 			type: 'POST',
 			dataType: 'json',
-			data: {
+			data: JSON.stringify({
 				api_key: 'Vjx3RodsrfTG',
 				name: studentName,
 				course: studentCourse,
 				grade: studentGrade,
-			},
+			}),
 			success: this.retrieveStudentData,
 			error: function (status, err) {
 				alert('Fail callback');
