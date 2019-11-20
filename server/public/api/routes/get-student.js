@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
   let getStudentquery = " SELECT g.`id`, g.`name`, g.`grade`," +
                           "c.`course` AS`course` " +
                           "FROM `grades` AS g " +
-                          "JOIN`courses` AS c " +
+                          "LEFT JOIN`courses` AS c " +
                           "ON c.`course` = g.`course` ";
 
     db.query(getStudentquery, (err, data) => {
