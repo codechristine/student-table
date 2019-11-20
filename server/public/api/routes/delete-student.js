@@ -6,31 +6,27 @@ router.use(express.json());
 
 router.delete('/:studentID', function (req, res) {
 
-  // let output = {};
-  let id = req.params.id.toString();
-  let collection = db.get('get-student');
-  // let deleteStudentQuery = " DELETE FROM `grades` WHERE id = req.params.id ";
+  let output = {};
+  let studentID = req.params.studentID;
+  let deleteStudentQuery = " DELETE FROM `grades` WHERE id =" + studentID ;
 
-  collection.remove({ "_id":id }), (err, data) => {
-    res.send( ( data === 1 ) ? { msg: 'deleted'} : { msg: 'error' + err } );
-  };
-});
-  //   db.query(deleteStudentQuery, req.params.id, (err, deleteStudentResult) => {
-  //     if (err) {
-  //       output = {
-  //         success: false,
-  //         data: err
-  //       };
-  //       res.status(500).json(output);
-  //     } else {
-  //       output = {
-  //         success: true,
-  //         data: deleteStudentResult.affectedRows
-  //       };
-  //       res.status(200).json(output);
-  //     }
-  //   });
-  // });
+    db.query(deleteStudentQuery, (err, deleteStudentResult) => {
+      if (err) {
+        output = {
+          success: false,
+          data: err
+        };
+        res.status(500).json(output);
+      } else {
+        output = {
+          success: true,
+          data: deleteStudentResult.affectedRows
+        };
+        res.status(200).json(output);
+      }
+    });
+  });
+
   // let output = {};
 
   // let deleteStudentQuery = " DELETE FROM `grades` WHERE id = {id} ";

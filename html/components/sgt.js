@@ -136,12 +136,12 @@ class SGT_template {
 
 	deleteStudentFromServer(studentID) {
 		var ajaxConfigObject = {
-			url: '/api/delete-student/',
+			url: `/api/delete-student/${studentID}`,
 			type: 'DELETE',
 			dataType: 'json',
 			data: {
 				api_key: 'Vjx3RodsrfTG',
-				student_id: studentID,
+				// student_id: studentID,
 			},
 			success: this.retrieveStudentData,
 			error: function (status, err) {
