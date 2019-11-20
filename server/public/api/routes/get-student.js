@@ -7,11 +7,7 @@ router.use(express.json());
 router.get('/', function (req, res) {
   let output = null;
 
-  let getStudentquery = " SELECT g.`id`, g.`name`, g.`grade`," +
-                          "c.`course` AS`course` " +
-                          "FROM `grades` AS g " +
-                          "LEFT JOIN`courses` AS c " +
-                          "ON c.`course` = g.`course` ";
+  let getStudentquery = " SELECT * FROM `grades` WHERE 1 " ;
 
     db.query(getStudentquery, (err, data) => {
     if (err) {

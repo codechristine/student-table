@@ -37,7 +37,6 @@ router.post('/', function (req, res) {
         res.status(200).json(output);
       }
     })
-  // }
 });
 
 module.exports = router;

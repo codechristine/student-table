@@ -68,6 +68,8 @@ class SGT_template {
 	}
 	displayAllStudents() {
 		this.elementConfig.displayArea.empty();
+		// debugger;
+		// this.data = [];
 		for (var student in this.data) {
 			this.elementConfig.displayArea.append(this.data[student].render());
 		}
@@ -83,13 +85,7 @@ class SGT_template {
 		this.elementConfig.averageArea.text(average.toFixed(2));
 	}
 	deleteStudent(id) {
-		if (id in this.deleteStudentFromServer) {
-			delete this.data[id];
-			return true;
-		} else {
-			return false;
-		}
-		// this.deleteStudentFromServer(id);
+		this.deleteStudentFromServer(id);
 	}
 	retrieveStudentData() {
 		var ajaxConfigObject = {
@@ -100,7 +96,7 @@ class SGT_template {
 				api_key: 'Vjx3RodsrfTG'
 			},
 			success: function (data, status) {
-				alert('Success callback');
+				alert(status + ': retrieved student data');
 				var dataArray = data.data;
 				for (var i = 0; i < dataArray.length; i++) {
 					var studentDataResult = dataArray[i];
@@ -109,31 +105,29 @@ class SGT_template {
 				this.displayAllStudents();
 			}.bind(this),
 			error: function (status, err) {
-				alert('Fail callback');
+				alert(err + ': retrieved student data failed');
 			}
 		}
 		$.ajax(ajaxConfigObject);
 	}
-
 	addNewStudentToServer(studentName, studentCourse, studentGrade) {
 		var ajaxConfigObject = {
 			url: '/api/add-student/',
 			type: 'POST',
 			dataType: 'json',
-			data: JSON.stringify({
+			data: {
 				api_key: 'Vjx3RodsrfTG',
 				name: studentName,
 				course: studentCourse,
 				grade: studentGrade,
-			}),
+			},
 			success: this.retrieveStudentData,
 			error: function (status, err) {
-				alert('Fail callback');
+				alert(err + ': input fields can\'t be empty');
 			},
 		}
 		$.ajax(ajaxConfigObject);
 	}
-
 	deleteStudentFromServer(studentID) {
 		var ajaxConfigObject = {
 			url: `/api/delete-student/${studentID}`,
@@ -141,18 +135,18 @@ class SGT_template {
 			dataType: 'json',
 			data: {
 				api_key: 'Vjx3RodsrfTG',
-				// student_id: studentID,
 			},
-			success: this.retrieveStudentData,
+			success: function (status, err) {
+			alert(err + ': retrieved student data');
+			},
+			// success: this.retrieveStudentData,
 			error: function (status, err) {
-				alert('Fail callback');
+				alert(err + ': delete student failed');
 			},
 		}
 		$.ajax(ajaxConfigObject);
 	}
-
 	toggleDarkMode() {
-
 		this.darkModeActive = !this.darkModeActive;
 		$('body').removeClass()
 
