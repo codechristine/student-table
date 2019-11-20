@@ -8,3 +8,5 @@ router.use(express.json());
 router.delete('/', function (req, res) {
 
 });
+
+module.exports = router;
