@@ -13,7 +13,7 @@ class Student {
 			name: null,
 			course: null,
 			grade: null,
-			operations: null,
+			operation: null,
 			deleteButton: null
 		};
 		this.handleDelete = this.handleDelete.bind(this);
@@ -28,14 +28,14 @@ class Student {
 		this.domElements.name	=	$('<td>').addClass('col-xs-4.col-md-4').text(this.data.name);
 		this.domElements.course = $('<td>').addClass('col-xs-4.col-md-4').text(this.data.course);
 		this.domElements.grade = $('<td>').addClass('col-xs-4.col-md-4').text(this.data.grade);
-		this.domElements.operations = $('<td>').addClass('col-xs-4.col-md-4');
+		this.domElements.operation = $('<td>').addClass('col-xs-4.col-md-4');
 
 		this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('btn btn-danger m-2');
-		this.domElements.operations.append(this.domElements.deleteButton);
+		this.domElements.operation.append(this.domElements.deleteButton);
 		this.domElements.row.append(this.domElements.name);
 		this.domElements.row.append(this.domElements.course);
 		this.domElements.row.append(this.domElements.grade);
-		this.domElements.row.append(this.domElements.operations)
+		this.domElements.row.append(this.domElements.operation)
 
 		return this.domElements.row;
 	}
