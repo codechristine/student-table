@@ -5,7 +5,7 @@ const db = require('../../../db_connection');
 router.use(express.json());
 
 router.post('/', function (req, res) {
-  const { body } = req;
+  const { body } = req.body;
 
   if (!body.id){
     db.query(" INSERT INTO `grades` (`name`) VALUES (?) ", (err, data) => {
