@@ -2,11 +2,11 @@
   "name": "student-table",
   "version": "3.0.0",
   "description": "student grade table full with node server",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "node server.js",
-    "start": "node server.js",
-    "dev": "node server.js"
+    "test": "node server/index.js",
+    "start": "node server/index.js",
+    "dev": "node server/index.js"
   },
   "repository": {
     "type": "git",

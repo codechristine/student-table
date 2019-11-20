@@ -4,6 +4,7 @@ A full stack JavaScript application for teachers who want to manage course recor
 
 ## Technologies Used
 
+- Node.js
 - Webpack 4
 - Bootstrap 3
 - Node.js
@@ -45,10 +46,4 @@ Try the application live at [https://student-grade-table.lfz.com](https://studen
 
     ```shell
     npm install
-    ```
-
-1. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
-
-    ```shell
-    npm run dev
     ```

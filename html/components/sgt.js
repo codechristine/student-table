@@ -97,7 +97,7 @@ class SGT_template {
 			// type: 'POST',
 			// url: 'http://s-apis.learningfuze.com/sgt/get',
 			// type: 'POST',
-			url: 'getstudents',
+			url: '/api/get-student/',
 			type: 'GET',
 			dataType: 'json',
 			data: {
