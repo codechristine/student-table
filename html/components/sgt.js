@@ -93,10 +93,6 @@ class SGT_template {
 	}
 	retrieveStudentData() {
 		var ajaxConfigObject = {
-			// url: 'api/getgrades.php',
-			// type: 'POST',
-			// url: 'http://s-apis.learningfuze.com/sgt/get',
-			// type: 'POST',
 			url: '/api/get-student/',
 			type: 'GET',
 			dataType: 'json',
@@ -121,8 +117,7 @@ class SGT_template {
 
 	addNewStudentToServer(studentName, studentCourse, studentGrade) {
 		var ajaxConfigObject = {
-			// url: 'http://s-apis.learningfuze.com/sgt/create',
-			url: 'addstudents',
+			url: '/api/add-student/',
 			type: 'POST',
 			dataType: 'json',
 			data: {
@@ -141,8 +136,7 @@ class SGT_template {
 
 	deleteStudentFromServer(studentID) {
 		var ajaxConfigObject = {
-			// url: 'http://s-apis.learningfuze.com/sgt/delete',
-			url: 'deletestudents',
+			url: '/api/delete-student/',
 			type: 'DELETE',
 			dataType: 'json',
 			data: {
