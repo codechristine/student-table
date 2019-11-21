@@ -68,8 +68,7 @@ class SGT_template {
 	}
 	displayAllStudents() {
 		this.elementConfig.displayArea.empty();
-		// debugger;
-		// this.data = [];
+
 		for (var student in this.data) {
 			this.elementConfig.displayArea.append(this.data[student].render());
 		}
@@ -96,7 +95,9 @@ class SGT_template {
 				api_key: 'Vjx3RodsrfTG'
 			},
 			success: function (data, status) {
-				alert(status + ': retrieved student data');
+				if(data.data.length === 0){
+					alert('no data to retrieve');
+				}
 				var dataArray = data.data;
 				for (var i = 0; i < dataArray.length; i++) {
 					var studentDataResult = dataArray[i];
@@ -137,9 +138,9 @@ class SGT_template {
 				api_key: 'Vjx3RodsrfTG',
 			},
 			success: function (status, err) {
-			alert(err + ': retrieved student data');
-			},
-			// success: this.retrieveStudentData,
+				alert('OK to confirm deleting student');
+				this.retrieveStudentData
+		},
 			error: function (status, err) {
 				alert(err + ': delete student failed');
 			},
