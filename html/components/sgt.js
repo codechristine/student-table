@@ -72,6 +72,7 @@ class SGT_template {
 		for (var student in this.data) {
 			this.elementConfig.displayArea.append(this.data[student].render());
 		}
+		this.data = {};
 		this.displayAverage();
 	}
 	displayAverage() {
@@ -138,7 +139,7 @@ class SGT_template {
 				api_key: 'Vjx3RodsrfTG',
 			},
 			success: function (status, err) {
-				alert('OK to confirm deleting student');
+				alert('click "OK" to confirm deleting student');
 				this.retrieveStudentData
 		},
 			error: function (status, err) {
