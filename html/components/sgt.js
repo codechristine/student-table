@@ -111,12 +111,19 @@ class SGT_template {
 				var dataArray = data.data;
 				for (var i = 0; i < dataArray.length; i++) {
 					var studentDataResult = dataArray[i];
+					console.log(studentDataResult);
+					// $('.name').append(studentDataResult.name);
+					// $('.course').append(studentDataResult.grade);
+					// $('.grade').append(studentDataResult.grade);
+
+					// this.elementConfig = $('#displayArea');
+					// this.elementConfig.append(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
 					// var newStudentFromRecievedData = this.createStudent(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
 				}
 				// $('#displayArea').empty();
 				console.log(this.elementConfig)
 				console.log(studentDataResult)
-				$('#displayArea').append(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
+				// $('#displayArea').append(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
 				// this.elementConfig.displayArea.append(studentDataResult);
 				// this.displayAverage();
 			},

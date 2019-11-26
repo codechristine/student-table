@@ -25,12 +25,12 @@ class Student {
 	render() {
 		this.domElements.row = $('<tr>');
 
-		this.domElements.name	=	$('<td>').addClass('col-xs-4.col-md-4').text(this.data.name);
-		this.domElements.course = $('<td>').addClass('col-xs-4.col-md-4').text(this.data.course);
-		this.domElements.grade = $('<td>').addClass('col-xs-4.col-md-4').text(this.data.grade);
-		this.domElements.operation = $('<td>').addClass('col-xs-4.col-md-4');
+		this.domElements.name	=	$('<td>').addClass('name col-xs-4.col-md-4').text(this.data.name);
+		this.domElements.course = $('<td>').addClass('course col-xs-4.col-md-4').text(this.data.course);
+		this.domElements.grade = $('<td>').addClass('grade col-xs-4.col-md-4').text(this.data.grade);
+		this.domElements.operation = $('<td>').addClass('operation col-xs-4.col-md-4');
 
-		this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('btn btn-danger m-2');
+		this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('delete btn btn-danger m-2');
 		this.domElements.operation.append(this.domElements.deleteButton);
 		this.domElements.row.append(this.domElements.name);
 		this.domElements.row.append(this.domElements.course);
