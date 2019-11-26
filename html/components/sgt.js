@@ -5,7 +5,8 @@ class SGT_template {
 		this.darkModeActive = false;
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
-		this.deleteStudent = this.deleteStudent.bind(this);
+		// this.createStudent = this.createStudent.bind(this);
+		// this.deleteStudent = this.deleteStudent.bind(this);
 		this.retrieveStudentData = this.retrieveStudentData.bind(this);
 		this.addNewStudentToServer = this.addNewStudentToServer.bind(this);
 		this.deleteStudentFromServer = this.deleteStudentFromServer.bind(this);
@@ -25,30 +26,32 @@ class SGT_template {
 	handleCancel() {
 		this.clearInputs();
 	}
-	createStudent(name, course, grade, id) {
-		var studentID = Object.keys(this.data);
-
-		if (this.doesStudentExist(id)) {
-			return false;
-		}
-		if (id === undefined) {
-			for (var i = 1; i <= studentID.length + 1; i++) {
-				if (!this.doesStudentExist(i)) {
-
-					this.data[i] = new Student(i, name, course, grade, this.deleteStudent);
-					return true;
-				}
-			}
-		}
-		this.data[id] = new Student(id, name, course, grade, this.deleteStudent);
-		return true;
-	}
-	doesStudentExist(id) {
-		if (this.data.hasOwnProperty(id)) {
-			return true;
-		}
-		return false;
-	}
+	// createStudent(name, course, grade) {
+	// 	var studentID = Object.keys(this.data);
+	// 	console.log(studentID);
+	// 	if (this.doesStudentExist(id)) {
+	// 		return false;
+	// 	}
+	// 	// if (id === undefined) {
+	// 	// 	for (var i = 1; i <= studentID.length + 1; i++) {
+	// 	// 		if (!this.doesStudentExist(i)) {
+	// 	// 			this.data[i] = new Student(i, name, course, grade, this.deleteStudentFromServer);
+	// 	// 			return true;
+	// 	// 		}
+	// 	// 	}
+	// 	// }
+	// 	this.data[id] = new Student(id, name, course, grade, this.deleteStudentFromServer);
+	// 	return true;
+	// }
+	// doesStudentExist(id) {
+	// 	if (this.data.hasOwnProperty(id)) {
+	// 		console.log(id)
+	// 		console.log(this.data)
+	// 		//this is also index
+	// 		return true;
+	// 	}
+	// 	return false;
+	// }
 	handleAdd() {
 		var nameValue = this.elementConfig.nameInput.val();
 		var gradeValue = this.elementConfig.gradeInput.val();
@@ -57,24 +60,28 @@ class SGT_template {
 		this.addNewStudentToServer(nameValue, courseValue, gradeValue);
 		this.clearInputs();
 	}
-	readStudent(id) {
-		if (!id) {
-			return Object.values(this.data);
-		}
-		if (!this.doesStudentExist(id)) {
-			return false;
-		}
-		return this.data[id];
-	}
-	displayAllStudents() {
-		this.elementConfig.displayArea.empty();
+	// readStudent(id) {
+	// 	if (!id) {
+	// 		console.log(id);
+	// 		console.log(Object.values(this.data))
+	// 		return Object.values(this.data);
+	// 	}
+	// 	if (!this.doesStudentExist(id)) {
+	// 		return false;
+	// 	}
+	// 	return this.data[id];
+	// }
+	// displayAllStudents() {
+	// 	this.elementConfig.displayArea.empty();
 
-		for (var student in this.data) {
-			this.elementConfig.displayArea.append(this.data[student].render());
-		}
-		this.data = {};
-		this.displayAverage();
-	}
+	// 	for (var student in this.data) {
+	// 		console.log(student)
+	// 		//student here is also index
+	// 		this.elementConfig.displayArea.append(this.data[student].render());
+	// 	}
+	// 	this.data = {};
+	// 	this.displayAverage();
+	// }
 	displayAverage() {
 		var total = 0
 		for (var student in this.data) {
@@ -84,9 +91,11 @@ class SGT_template {
 
 		this.elementConfig.averageArea.text(average.toFixed(2));
 	}
-	deleteStudent(id) {
-		this.deleteStudentFromServer(id);
-	}
+	// deleteStudent(id) {
+	// 	this.deleteStudentFromServer(id);
+	// 	console.log(id);
+	// 	//this is actually index
+	// }
 	retrieveStudentData() {
 		var ajaxConfigObject = {
 			url: '/api/get-student/',
@@ -102,10 +111,17 @@ class SGT_template {
 				var dataArray = data.data;
 				for (var i = 0; i < dataArray.length; i++) {
 					var studentDataResult = dataArray[i];
-					var newStudentFromRecievedData = this.createStudent(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
+					// var newStudentFromRecievedData = this.createStudent(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
 				}
-				this.displayAllStudents();
-			}.bind(this),
+				// $('#displayArea').empty();
+				console.log(this.elementConfig)
+				console.log(studentDataResult)
+				$('#displayArea').append(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
+				// this.elementConfig.displayArea.append(studentDataResult);
+				// this.displayAverage();
+			},
+			// 	this.displayAllStudents();
+			// }.bind(this),
 			error: function (status, err) {
 				alert(err + ': retrieved student data failed');
 			}

@@ -40,7 +40,9 @@ class Student {
 		return this.domElements.row;
 	}
 	handleDelete() {
-		this.deleteCallback(this.data.id);
+		// this.deleteCallback(this.data.id);
+		console.log(this.data.id)
+		//this is also index
 		this.domElements.row.remove();
 	}
 	update(updateField, updateValue) {
