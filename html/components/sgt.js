@@ -1,8 +1,17 @@
 class SGT_template {
 	constructor(elementConfig) {
+		this.domElements = {
+			row: null,
+			name: null,
+			course: null,
+			grade: null,
+			operation: null,
+			deleteButton: null
+		};
 		this.elementConfig = elementConfig;
 		this.data = {};
 		this.darkModeActive = false;
+		// this.render = this.render.bind(this);
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		// this.createStudent = this.createStudent.bind(this);
@@ -12,6 +21,23 @@ class SGT_template {
 		this.deleteStudentFromServer = this.deleteStudentFromServer.bind(this);
 		this.toggleDarkMode = this.toggleDarkMode.bind(this);
 	}
+	// render() {
+// 		this.domElements.row = $('<tr>');
+
+// 		this.domElements.name	=	$('<td>').addClass('name col-xs-4.col-md-4').text(this.data.name);
+// 		this.domElements.course = $('<td>').addClass('course col-xs-4.col-md-4').text(this.data.course);
+// 		this.domElements.grade = $('<td>').addClass('grade col-xs-4.col-md-4').text(this.data.grade);
+// 		this.domElements.operation = $('<td>').addClass('operation col-xs-4.col-md-4');
+
+// 		this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('delete btn btn-danger m-2');
+// 		this.domElements.operation.append(this.domElements.deleteButton);
+// 		this.domElements.row.append(this.domElements.name);
+// 		this.domElements.row.append(this.domElements.course);
+// 		this.domElements.row.append(this.domElements.grade);
+// 		this.domElements.row.append(this.domElements.operation)
+
+// 		return this.domElements.row;
+	// }
 	addEventHandlers() {
 		this.elementConfig.addButton.click(this.handleAdd);
 		this.elementConfig.cancelButton.click(this.handleCancel);
@@ -112,17 +138,43 @@ class SGT_template {
 				for (var i = 0; i < dataArray.length; i++) {
 					var studentDataResult = dataArray[i];
 					console.log(studentDataResult);
+
+					// var domElements = {
+					// 			row: null,
+					// 			name: null,
+					// 			course: null,
+					// 			grade: null,
+					// 			operation: null,
+					// 			deleteButton: null
+					// }
+
+					// domElements.row = $('<tr>');
+
+					// domElements.name = $('<td>').addClass('name col-xs-4.col-md-4').text(studentDataResult.name);
+					// domElements.course = $('<td>').addClass('course col-xs-4.col-md-4').text(studentDataResult.course);
+					// domElements.grade = $('<td>').addClass('grade col-xs-4.col-md-4').text(studentDataResult.grade);
+					// domElements.operation = $('<td>').addClass('operation col-xs-4.col-md-4');
+
+					// domElements.deleteButton = $('<button>').on('click', this.deleteStudentFromServer).text('Delete').addClass('delete btn btn-danger m-2');
+					// domElements.operation.append(domElements.deleteButton);
+					// domElements.row.append(domElements.name);
+					// domElements.row.append(domElements.course);
+					// domElements.row.append(domElements.grade);
+					// domElements.row.append(domElements.operation)
+
+					// return domElements.row;
+
 					// $('.name').append(studentDataResult.name);
 					// $('.course').append(studentDataResult.grade);
 					// $('.grade').append(studentDataResult.grade);
 
 					// this.elementConfig = $('#displayArea');
-					// this.elementConfig.append(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
+					console.log(this.elementConfig)
+					// this.elementConfig.displayArea.append(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
 					// var newStudentFromRecievedData = this.createStudent(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
 				}
-				// $('#displayArea').empty();
 				console.log(this.elementConfig)
-				console.log(studentDataResult)
+				// $('#displayArea').empty();
 				// $('#displayArea').append(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
 				// this.elementConfig.displayArea.append(studentDataResult);
 				// this.displayAverage();
