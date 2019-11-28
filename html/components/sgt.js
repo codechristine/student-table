@@ -1,46 +1,23 @@
 class SGT_template {
 	constructor(elementConfig) {
-		this.domElements = {
-			row: null,
-			name: null,
-			course: null,
-			grade: null,
-			operation: null,
-			deleteButton: null
-		};
 		this.elementConfig = elementConfig;
 		this.data = {};
 		this.darkModeActive = false;
-		// this.render = this.render.bind(this);
-		this.handleAdd = this.handleAdd.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
+		this.handleAdd = this.handleAdd.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
 		// this.createStudent = this.createStudent.bind(this);
 		// this.deleteStudent = this.deleteStudent.bind(this);
+		// this.displayAllStudents = this.displayAllStudents.bind(this);
+		this.successStudentCallback = this.successStudentCallback.bind(this);
 		this.retrieveStudentData = this.retrieveStudentData.bind(this);
 		this.addNewStudentToServer = this.addNewStudentToServer.bind(this);
 		this.deleteStudentFromServer = this.deleteStudentFromServer.bind(this);
 		this.toggleDarkMode = this.toggleDarkMode.bind(this);
 	}
-	// render() {
-// 		this.domElements.row = $('<tr>');
-
-// 		this.domElements.name	=	$('<td>').addClass('name col-xs-4.col-md-4').text(this.data.name);
-// 		this.domElements.course = $('<td>').addClass('course col-xs-4.col-md-4').text(this.data.course);
-// 		this.domElements.grade = $('<td>').addClass('grade col-xs-4.col-md-4').text(this.data.grade);
-// 		this.domElements.operation = $('<td>').addClass('operation col-xs-4.col-md-4');
-
-// 		this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('delete btn btn-danger m-2');
-// 		this.domElements.operation.append(this.domElements.deleteButton);
-// 		this.domElements.row.append(this.domElements.name);
-// 		this.domElements.row.append(this.domElements.course);
-// 		this.domElements.row.append(this.domElements.grade);
-// 		this.domElements.row.append(this.domElements.operation)
-
-// 		return this.domElements.row;
-	// }
 	addEventHandlers() {
-		this.elementConfig.addButton.click(this.handleAdd);
 		this.elementConfig.cancelButton.click(this.handleCancel);
+		this.elementConfig.addButton.click(this.handleAdd);
 		$('#retrieveButton').click(this.retrieveStudentData);
 		$('.slider').click(this.toggleDarkMode);
 	}
@@ -83,8 +60,22 @@ class SGT_template {
 		var gradeValue = this.elementConfig.gradeInput.val();
 		var courseValue = this.elementConfig.courseInput.val();
 
+		this.elementConfig.displayArea.empty();
 		this.addNewStudentToServer(nameValue, courseValue, gradeValue);
 		this.clearInputs();
+	}
+	handleDelete(studentID) {
+		var deletedStudentID = $(event.currentTarget).attr('studentID');
+		var deleteStudentTwo = $(this).attr('studentID');
+		console.log(event.currentTarget);
+		console.log(event.target)
+		console.log(deleteStudentTwo)
+		console.log(deletedStudentID);
+		console.log(this.elementConfig)
+		console.log(studentID);
+		this.deleteStudentFromServer(studentID);
+		// this.elementConfig.displayArea.row.deletedStudentID.remove();
+		// this.deleteStudentFromServer(id);
 	}
 	// readStudent(id) {
 	// 	if (!id) {
@@ -98,30 +89,60 @@ class SGT_template {
 	// 	return this.data[id];
 	// }
 	// displayAllStudents() {
-	// 	this.elementConfig.displayArea.empty();
-
-	// 	for (var student in this.data) {
-	// 		console.log(student)
-	// 		//student here is also index
-	// 		this.elementConfig.displayArea.append(this.data[student].render());
-	// 	}
-	// 	this.data = {};
-	// 	this.displayAverage();
+		// this.elementConfig = $('#displayArea');
+		// this.elementConfig.empty();
+		// this.data = {};
+		// this.displayAverage();
 	// }
-	displayAverage() {
-		var total = 0
-		for (var student in this.data) {
-			total += this.data[student].data.grade;
-		}
-		var average = total / Object.keys(this.data).length;
+	// displayAverage() {
+	// 	var total = 0
+	// 	for (var student in this.data) {
+	// 		total += this.data[student].data.grade;
+	// 	}
+	// 	var average = total / Object.keys(this.data).length;
 
-		this.elementConfig.averageArea.text(average.toFixed(2));
-	}
+	// 	this.elementConfig.averageArea.text(average.toFixed(2));
+	// }
 	// deleteStudent(id) {
 	// 	this.deleteStudentFromServer(id);
 	// 	console.log(id);
 	// 	//this is actually index
 	// }
+	successStudentCallback(data, status) {
+		if (data.data.length === 0) {
+			alert('no data to retrieve');
+		}
+		console.log(data)
+
+		var dataArray = data.data;
+		for (var i = 0; i < dataArray.length; i++) {
+			var studentDataResult = dataArray[i];
+
+			var domElements = {
+				row: null,
+				name: null,
+				course: null,
+				grade: null,
+				operation: null,
+				deleteButton: null
+			}
+
+			domElements.row = $('<tr>').attr('studentID', studentDataResult.id);
+			domElements.name = $('<td>').addClass('name col-xs-4.col-md-4').text(studentDataResult.name);
+			domElements.course = $('<td>').addClass('course col-xs-4.col-md-4').text(studentDataResult.course);
+			domElements.grade = $('<td>').addClass('grade col-xs-4.col-md-4').text(studentDataResult.grade);
+			domElements.operation = $('<td>').addClass('operation col-xs-4.col-md-4');
+			domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('delete btn btn-danger m-2');
+			domElements.operation.append(domElements.deleteButton);
+			domElements.row.append(domElements.name);
+			domElements.row.append(domElements.course);
+			domElements.row.append(domElements.grade);
+			domElements.row.append(domElements.operation);
+
+			this.elementConfig = $('#displayArea');
+			this.elementConfig.append(domElements.row);
+		}
+	}
 	retrieveStudentData() {
 		var ajaxConfigObject = {
 			url: '/api/get-student/',
@@ -130,56 +151,8 @@ class SGT_template {
 			data: {
 				api_key: 'Vjx3RodsrfTG'
 			},
-			success: function (data, status) {
-				if(data.data.length === 0){
-					alert('no data to retrieve');
-				}
-				var dataArray = data.data;
-				for (var i = 0; i < dataArray.length; i++) {
-					var studentDataResult = dataArray[i];
-					console.log(studentDataResult);
-
-					// var domElements = {
-					// 			row: null,
-					// 			name: null,
-					// 			course: null,
-					// 			grade: null,
-					// 			operation: null,
-					// 			deleteButton: null
-					// }
-
-					// domElements.row = $('<tr>');
-
-					// domElements.name = $('<td>').addClass('name col-xs-4.col-md-4').text(studentDataResult.name);
-					// domElements.course = $('<td>').addClass('course col-xs-4.col-md-4').text(studentDataResult.course);
-					// domElements.grade = $('<td>').addClass('grade col-xs-4.col-md-4').text(studentDataResult.grade);
-					// domElements.operation = $('<td>').addClass('operation col-xs-4.col-md-4');
-
-					// domElements.deleteButton = $('<button>').on('click', this.deleteStudentFromServer).text('Delete').addClass('delete btn btn-danger m-2');
-					// domElements.operation.append(domElements.deleteButton);
-					// domElements.row.append(domElements.name);
-					// domElements.row.append(domElements.course);
-					// domElements.row.append(domElements.grade);
-					// domElements.row.append(domElements.operation)
-
-					// return domElements.row;
-
-					// $('.name').append(studentDataResult.name);
-					// $('.course').append(studentDataResult.grade);
-					// $('.grade').append(studentDataResult.grade);
-
-					// this.elementConfig = $('#displayArea');
-					console.log(this.elementConfig)
-					// this.elementConfig.displayArea.append(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
-					// var newStudentFromRecievedData = this.createStudent(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
-				}
-				console.log(this.elementConfig)
-				// $('#displayArea').empty();
-				// $('#displayArea').append(studentDataResult.name, studentDataResult.course, studentDataResult.grade);
-				// this.elementConfig.displayArea.append(studentDataResult);
-				// this.displayAverage();
-			},
-			// 	this.displayAllStudents();
+			success: this.successStudentCallback,
+				// this.displayAllStudents()
 			// }.bind(this),
 			error: function (status, err) {
 				alert(err + ': retrieved student data failed');
@@ -215,8 +188,8 @@ class SGT_template {
 			},
 			success: function (status, err) {
 				alert('click "OK" to confirm deleting student');
-				this.retrieveStudentData
-		},
+				this.retrieveStudentData();
+			},
 			error: function (status, err) {
 				alert(err + ': delete student failed');
 			},
@@ -227,7 +200,7 @@ class SGT_template {
 		this.darkModeActive = !this.darkModeActive;
 		$('body').removeClass()
 
-		if(this.darkModeActive){
+		if (this.darkModeActive) {
 			$('body').addClass('darkModeActive');
 		} else {
 			$('body').addClass('lightModeActive');
