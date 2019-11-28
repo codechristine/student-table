@@ -23,7 +23,6 @@ router.delete('/:studentID', function (req, res) {
         data: deleteStudentResult.affectedRows
       };
       res.status(200).json(output);
-
     }
   });
 });
