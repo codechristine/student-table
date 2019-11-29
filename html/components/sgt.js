@@ -1,11 +1,20 @@
 class SGT_template {
 	constructor(elementConfig) {
 		this.elementConfig = elementConfig;
+		this.domElements = {
+			row: null,
+			name: null,
+			course: null,
+			grade: null,
+			operation: null,
+			deleteButton: null
+		}
 		this.data = {};
 		this.darkModeActive = false;
 		this.handleCancel = this.handleCancel.bind(this);
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
+		this.displayAverage = this.displayAverage.bind(this);
 		// this.createStudent = this.createStudent.bind(this);
 		// this.deleteStudent = this.deleteStudent.bind(this);
 		// this.displayAllStudents = this.displayAllStudents.bind(this);
@@ -89,26 +98,30 @@ class SGT_template {
 	// 	return this.data[id];
 	// }
 	// displayAllStudents() {
-		// this.elementConfig = $('#displayArea');
-		// this.elementConfig.empty();
-		// this.data = {};
-		// this.displayAverage();
+	// 	this.elementConfig = $('#displayArea');
+	// 	this.elementConfig.empty();
+	// 	this.data = {};
+	// 	this.displayAverage();
 	// }
-	// displayAverage() {
-	// 	var total = 0
-	// 	for (var student in this.data) {
-	// 		total += this.data[student].data.grade;
-	// 	}
-	// 	var average = total / Object.keys(this.data).length;
+	displayAverage() {
+		var gradeTotal = 0;
 
-	// 	this.elementConfig.averageArea.text(average.toFixed(2));
-	// }
+		for (var i = 0; i < this.data.data.length; i++) {
+			var studentGrade = this.data.data[i].grade;
+			gradeTotal += studentGrade;
+		}
+
+		var gradeAverage = gradeTotal / Object.keys(this.data.data).length;
+		this.elementConfig.averageArea.text(gradeAverage.toFixed(2));
+	}
 	// deleteStudent(id) {
 	// 	this.deleteStudentFromServer(id);
 	// 	console.log(id);
 	// 	//this is actually index
 	// }
 	successStudentCallback(data, status) {
+		this.elementConfig.displayArea.empty();
+
 		if (data.data.length === 0) {
 			alert('no data to retrieve');
 		}
@@ -118,30 +131,22 @@ class SGT_template {
 		for (var i = 0; i < dataArray.length; i++) {
 			var studentDataResult = dataArray[i];
 
-			var domElements = {
-				row: null,
-				name: null,
-				course: null,
-				grade: null,
-				operation: null,
-				deleteButton: null
-			}
-
-			domElements.row = $('<tr>').attr('studentID', studentDataResult.id);
-			domElements.name = $('<td>').addClass('name col-xs-4.col-md-4').text(studentDataResult.name);
-			domElements.course = $('<td>').addClass('course col-xs-4.col-md-4').text(studentDataResult.course);
-			domElements.grade = $('<td>').addClass('grade col-xs-4.col-md-4').text(studentDataResult.grade);
-			domElements.operation = $('<td>').addClass('operation col-xs-4.col-md-4');
-			domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('delete btn btn-danger m-2');
-			domElements.operation.append(domElements.deleteButton);
-			domElements.row.append(domElements.name);
-			domElements.row.append(domElements.course);
-			domElements.row.append(domElements.grade);
-			domElements.row.append(domElements.operation);
-
-			this.elementConfig = $('#displayArea');
-			this.elementConfig.append(domElements.row);
+			this.domElements.row = $('<tr>').attr('studentID', studentDataResult.id);
+			this.domElements.name = $('<td>').addClass('name col-xs-4.col-md-4').text(studentDataResult.name);
+			this.domElements.course = $('<td>').addClass('course col-xs-4.col-md-4').text(studentDataResult.course);
+			this.domElements.grade = $('<td>').addClass('grade col-xs-4.col-md-4').text(studentDataResult.grade);
+			this.domElements.operation = $('<td>').addClass('operation col-xs-4.col-md-4');
+			this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('delete btn btn-danger m-2');
+			this.domElements.operation.append(this.domElements.deleteButton);
+			this.domElements.row.append(this.domElements.name);
+			this.domElements.row.append(this.domElements.course);
+			this.domElements.row.append(this.domElements.grade);
+			this.domElements.row.append(this.domElements.operation);
+			this.elementConfig.displayArea.append(this.domElements.row);
 		}
+		this.data = data;
+		this.displayAverage();
+		console.log(this.data);
 	}
 	retrieveStudentData() {
 		var ajaxConfigObject = {
@@ -152,7 +157,7 @@ class SGT_template {
 				api_key: 'Vjx3RodsrfTG'
 			},
 			success: this.successStudentCallback,
-				// this.displayAllStudents()
+			// this.displayAverage()
 			// }.bind(this),
 			error: function (status, err) {
 				alert(err + ': retrieved student data failed');
