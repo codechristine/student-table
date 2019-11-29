@@ -17,8 +17,7 @@ class SGT_template {
 		this.displayAverage = this.displayAverage.bind(this);
 		// this.createStudent = this.createStudent.bind(this);
 		// this.deleteStudent = this.deleteStudent.bind(this);
-		// this.displayAllStudents = this.displayAllStudents.bind(this);
-		this.successStudentCallback = this.successStudentCallback.bind(this);
+		this.displayAllStudents = this.displayAllStudents.bind(this);
 		this.retrieveStudentData = this.retrieveStudentData.bind(this);
 		this.addNewStudentToServer = this.addNewStudentToServer.bind(this);
 		this.deleteStudentFromServer = this.deleteStudentFromServer.bind(this);
@@ -119,7 +118,7 @@ class SGT_template {
 	// 	console.log(id);
 	// 	//this is actually index
 	// }
-	successStudentCallback(data, status) {
+	displayAllStudents(data) {
 		this.elementConfig.displayArea.empty();
 
 		if (data.data.length === 0) {
@@ -146,7 +145,6 @@ class SGT_template {
 		}
 		this.data = data;
 		this.displayAverage();
-		console.log(this.data);
 	}
 	retrieveStudentData() {
 		var ajaxConfigObject = {
@@ -156,7 +154,7 @@ class SGT_template {
 			data: {
 				api_key: 'Vjx3RodsrfTG'
 			},
-			success: this.successStudentCallback,
+			success: this.displayAllStudents,
 			// this.displayAverage()
 			// }.bind(this),
 			error: function (status, err) {
