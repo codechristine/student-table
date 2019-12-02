@@ -4,28 +4,28 @@ A full stack JavaScript application for teachers who want to manage course recor
 
 ## Technologies Used
 
-- React.js
-- Webpack 4
-- Bootstrap 4
 - Node.js
+- Webpack 4
+- Bootstrap 3
 - HTML5
 - CSS3
-- AWS EC2
 
 ## Live Demo
 
-Try the application live at [https://student-grade-table.lfz.com](https://student-grade-table.lfz.com)
+Try the application live at [https://student-table.christinele.dev.com](https://student-table.christinele.dev.com)
 
 ## Features
 
+- Teachers can retrieve a list of student grades.
 - Teachers can view a list of recorded grades.
-- Teachers can view the average grade.
-- Teachers can add a grade to the table.
+- Teachers can view the overall average grade.
+- Teachers can add a new student with course and grade to the table.
 - Teachers can delete a grade from the table.
+- Teachers can toggle dark mode to the table.
 
 ## Preview
 
-![SGT React](images/sgt-react.gif)
+![SGT React](server\demo\live-demo.gif)
 
 ## Development
 
@@ -47,10 +47,4 @@ Try the application live at [https://student-grade-table.lfz.com](https://studen
 
     ```shell
     npm install
-    ```
-
-1. Start the project. Once started you can view the application by opening http://localhost:3000 in your browser.
-
-    ```shell
-    npm run dev
     ```
