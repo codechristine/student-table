@@ -1,19 +1,45 @@
-const express = require('express');
+// const http = require('http');
+// const express = require('express');
 
-const server = express();
-server.use(express.static(__dirname + '/html'));
+// const server = express();
+// server.use(express.static(__dirname + '/html'));
+// server.use(express.JSON());
 
-const fs = require('fs');
+// const fs = require('fs');
 
-server.get('/myFirstEndpoint', function(request, response){
-  response.send('this is your endpoint. Yay!');
-});
+// var newData = [
+//   {
+//     'id': '',
+//     'name': '',
+//     'course': '',
+//     'grade': ''
+//   }
+// ]
 
-server.get('/getstudents', function(request, response){
-  var data = fs.readFileSync(__dirname + '/data/studentdata.json');
-  response.send(data);
-})
+// server.get('/api/get-student/', function (request, response) {
+//   var data = fs.readFileSync(__dirname + '/data/studentdata.json');
+//   response.send(data);
+// });
 
-server.listen(3001, function(){
-  console.log('server is listneing on port 3001');
-})
+// server.post('/addstudents', function (request, response) {
+//   var rawData = fs.readFileSync(__dirname + '/data/studentdata.json', function callback(err, data){
+//   newData = JSON.parse(data);
+//   var newStudent = newData.push(data);
+//   var json = JSON.stringify(newStudent);
+
+//   fs.writeFileSync('/data/studentdata.json', json, callback);
+//   });
+
+//   response.send(rawData);
+// });
+
+// server.delete('/deletestudents', function (request, response) {
+//   var rawData = fs.readFileSync(__dirname + '/data/studentdata.json');
+
+//   delete newData['studentID']
+//   response.send(rawData);
+// });
+
+// server.listen(3001, function () {
+//   console.log('server is listneing on port 3001');
+// })

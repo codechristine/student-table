@@ -1,23 +1,32 @@
 {
-  "name": "sgt",
+  "name": "student-table",
   "version": "3.0.0",
   "description": "student grade table full with node server",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "test": "node server.js",
-    "start": "node server.js"
+    "test": "node server/index.js",
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codechristine/SGT.git"
+    "url": "git+https://github.com/codechristine/student-table.git"
   },
-  "author": "",
+  "author": "\"\",",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/codechristine/SGT/issues"
+    "url": "https://github.com/codechristine/student-table/issues"
   },
-  "homepage": "https://github.com/codechristine/SGT#readme",
+  "homepage": "https://github.com/codechristine/student-table#readme",
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "mysql": "^2.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "keywords": []
 }
