@@ -15,8 +15,6 @@ class SGT_template {
 		this.handleAdd = this.handleAdd.bind(this);
 		this.handleDelete = this.handleDelete.bind(this);
 		this.displayAverage = this.displayAverage.bind(this);
-		// this.createStudent = this.createStudent.bind(this);
-		// this.deleteStudent = this.deleteStudent.bind(this);
 		this.displayAllStudents = this.displayAllStudents.bind(this);
 		this.retrieveStudentData = this.retrieveStudentData.bind(this);
 		this.addNewStudentToServer = this.addNewStudentToServer.bind(this);
@@ -37,32 +35,6 @@ class SGT_template {
 	handleCancel() {
 		this.clearInputs();
 	}
-	// createStudent(name, course, grade) {
-	// 	var studentID = Object.keys(this.data);
-	// 	console.log(studentID);
-	// 	if (this.doesStudentExist(id)) {
-	// 		return false;
-	// 	}
-	// 	// if (id === undefined) {
-	// 	// 	for (var i = 1; i <= studentID.length + 1; i++) {
-	// 	// 		if (!this.doesStudentExist(i)) {
-	// 	// 			this.data[i] = new Student(i, name, course, grade, this.deleteStudentFromServer);
-	// 	// 			return true;
-	// 	// 		}
-	// 	// 	}
-	// 	// }
-	// 	this.data[id] = new Student(id, name, course, grade, this.deleteStudentFromServer);
-	// 	return true;
-	// }
-	// doesStudentExist(id) {
-	// 	if (this.data.hasOwnProperty(id)) {
-	// 		console.log(id)
-	// 		console.log(this.data)
-	// 		//this is also index
-	// 		return true;
-	// 	}
-	// 	return false;
-	// }
 	handleAdd() {
 		var nameValue = this.elementConfig.nameInput.val();
 		var gradeValue = this.elementConfig.gradeInput.val();
@@ -72,36 +44,10 @@ class SGT_template {
 		this.addNewStudentToServer(nameValue, courseValue, gradeValue);
 		this.clearInputs();
 	}
-	handleDelete(studentID) {
+	handleDelete(event) {
 		var deletedStudentID = $(event.currentTarget).attr('studentID');
-		var deleteStudentTwo = $(this).attr('studentID');
-		console.log(event.currentTarget);
-		console.log(event.target)
-		console.log(deleteStudentTwo)
-		console.log(deletedStudentID);
-		console.log(this.elementConfig)
-		console.log(studentID);
-		this.deleteStudentFromServer(studentID);
-		// this.elementConfig.displayArea.row.deletedStudentID.remove();
-		// this.deleteStudentFromServer(id);
+		this.deleteStudentFromServer(deletedStudentID);
 	}
-	// readStudent(id) {
-	// 	if (!id) {
-	// 		console.log(id);
-	// 		console.log(Object.values(this.data))
-	// 		return Object.values(this.data);
-	// 	}
-	// 	if (!this.doesStudentExist(id)) {
-	// 		return false;
-	// 	}
-	// 	return this.data[id];
-	// }
-	// displayAllStudents() {
-	// 	this.elementConfig = $('#displayArea');
-	// 	this.elementConfig.empty();
-	// 	this.data = {};
-	// 	this.displayAverage();
-	// }
 	displayAverage() {
 		var gradeTotal = 0;
 
@@ -113,29 +59,23 @@ class SGT_template {
 		var gradeAverage = gradeTotal / Object.keys(this.data.data).length;
 		this.elementConfig.averageArea.text(gradeAverage.toFixed(2));
 	}
-	// deleteStudent(id) {
-	// 	this.deleteStudentFromServer(id);
-	// 	console.log(id);
-	// 	//this is actually index
-	// }
 	displayAllStudents(data) {
 		this.elementConfig.displayArea.empty();
 
 		if (data.data.length === 0) {
 			alert('no data to retrieve');
 		}
-		console.log(data)
 
 		var dataArray = data.data;
 		for (var i = 0; i < dataArray.length; i++) {
 			var studentDataResult = dataArray[i];
 
-			this.domElements.row = $('<tr>').attr('studentID', studentDataResult.id);
+			this.domElements.row = $('<tr>');
 			this.domElements.name = $('<td>').addClass('name col-xs-4.col-md-4').text(studentDataResult.name);
 			this.domElements.course = $('<td>').addClass('course col-xs-4.col-md-4').text(studentDataResult.course);
 			this.domElements.grade = $('<td>').addClass('grade col-xs-4.col-md-4').text(studentDataResult.grade);
 			this.domElements.operation = $('<td>').addClass('operation col-xs-4.col-md-4');
-			this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).text('Delete').addClass('delete btn btn-danger m-2');
+			this.domElements.deleteButton = $('<button>').on('click', this.handleDelete).attr('studentID', studentDataResult.id).text('Delete').addClass('delete btn btn-danger m-2');
 			this.domElements.operation.append(this.domElements.deleteButton);
 			this.domElements.row.append(this.domElements.name);
 			this.domElements.row.append(this.domElements.course);
@@ -155,8 +95,6 @@ class SGT_template {
 				api_key: 'Vjx3RodsrfTG'
 			},
 			success: this.displayAllStudents,
-			// this.displayAverage()
-			// }.bind(this),
 			error: function (status, err) {
 				alert(err + ': retrieved student data failed');
 			}
@@ -192,7 +130,7 @@ class SGT_template {
 			success: function (status, err) {
 				alert('click "OK" to confirm deleting student');
 				this.retrieveStudentData();
-			},
+			}.bind(this),
 			error: function (status, err) {
 				alert(err + ': delete student failed');
 			},

@@ -8,11 +8,9 @@ router.delete('/:studentID', function (req, res) {
 
   let output = {};
   let studentID = JSON.stringify(req.params.studentID);
-  console.log(studentID);
   let deleteStudentQuery = " DELETE FROM `grades` WHERE `id` = " + studentID ;
 
   db.query(deleteStudentQuery, (err, deleteStudentResult) => {
-    console.log(deleteStudentResult);
     if (err) {
       output = {
         success: false,
@@ -24,7 +22,6 @@ router.delete('/:studentID', function (req, res) {
         success: true,
         data: deleteStudentResult.affectedRows
       };
-      console.log(output.data)
       res.status(200).json(output);
     }
   });
