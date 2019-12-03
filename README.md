@@ -25,7 +25,7 @@ Try the application live at [https://student-table.christinele.dev.com](https://
 
 ## Preview
 
-![SGT React](server\demo\live-demo.gif)
+![SGT React](server/demo/live-demo.gif)
 
 ## Development
 
