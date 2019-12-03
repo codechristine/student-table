@@ -7,7 +7,6 @@ const getStudentsRoute = require('./public/api/routes/get-student');
 const addStudentsRoute = require('./public/api/routes/add-student');
 const deleteStudentsRoute = require('./public/api/routes/delete-student');
 
-
 app.use('/api/get-student/', getStudentsRoute);
 app.use('/api/add-student/', addStudentsRoute);
 app.use('/api/delete-student/', deleteStudentsRoute);
