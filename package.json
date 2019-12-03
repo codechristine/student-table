@@ -4,7 +4,6 @@
   "description": "student grade table full with node server",
   "main": "index.js",
   "scripts": {
-    "test": "node server/index.js",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js"
   },
