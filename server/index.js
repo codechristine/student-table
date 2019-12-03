@@ -1,7 +1,7 @@
 const http = require('http');
 const express = require('express');
 const app = express();
-app.use(express.static(__dirname + '../../client'));
+app.use(express.static(__dirname + '/public'));
 
 const getStudentsRoute = require('./api/routes/get-student');
 const addStudentsRoute = require('./api/routes/add-student');
