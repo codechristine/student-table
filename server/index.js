@@ -3,9 +3,9 @@ const express = require('express');
 const app = express();
 app.use(express.static(__dirname + '../../client'));
 
-const getStudentsRoute = require('./public/api/routes/get-student');
-const addStudentsRoute = require('./public/api/routes/add-student');
-const deleteStudentsRoute = require('./public/api/routes/delete-student');
+const getStudentsRoute = require('./api/routes/get-student');
+const addStudentsRoute = require('./api/routes/add-student');
+const deleteStudentsRoute = require('./api/routes/delete-student');
 
 app.use('/api/get-student/', getStudentsRoute);
 app.use('/api/add-student/', addStudentsRoute);
