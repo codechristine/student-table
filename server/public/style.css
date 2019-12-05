@@ -1,42 +1,46 @@
+.header {
+  margin-bottom: 3vh;
+}
+.header h1 {
+  font-weight: bold;
+  margin-top: 3vh;
+}
+.grade {
+  font-size: 2.5rem;
+  margin-top: 2%;
+}
 .page-header {
 	border-bottom: none;
 }
-
 thead {
 	font-size: 1.8rem;
 }
-
 #displayArea {
 	font-size: 1.5rem;
 }
-
 .darkMode {
-	font-size: 1.5rem;
-	color: orange;
+	font-size: 2.5rem;
+  color: orange;
+  margin-top: 2%;
 }
-
 .lightModeActive {
 	background-color: white;
 }
-
 .darkModeActive {
 	background-color: rgba(0, 0, 0, 0.836);
 	color: white;
 }
-
 .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
 }
-
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
 .slider {
   position: absolute;
   cursor: pointer;
@@ -48,7 +52,6 @@ thead {
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -60,29 +63,23 @@ thead {
   -webkit-transition: .4s;
   transition: .4s;
 }
-
 input:checked + .slider {
 	background-color: #2196F3;
 }
-
 input:focus + .slider {
 	box-shadow: 0 0 1px #2196F3;
 }
-
 input:focus + .slider + body {
 	background-color: black;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
-
 .slider.round {
   border-radius: 34px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
