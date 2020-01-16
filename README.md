@@ -12,7 +12,7 @@ A full stack JavaScript application for teachers who want to manage course recor
 
 ## Live Demo
 
-Try the application live at [https://student-table.christinele.dev.com](https://student-table.christinele.dev.com)
+Try the application live at [https://student-table.christinele.dev](https://student-table.christinele.dev)
 
 ## Features
 
